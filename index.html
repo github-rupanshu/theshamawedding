@@ -21,15 +21,20 @@
        1. DESIGN TOKENS  — change these to re-theme the whole site
        ============================================================ */
     :root {
-      --maroon-deep:   #4a0e15;
-      --maroon:        #6b1620;
-      --maroon-soft:   #8a2734;
-      --gold:          #c9a13b;
-      --gold-light:    #e6c873;
-      --gold-pale:     #f3e6c4;
-      --cream:         #fbf6ec;
-      --cream-dim:     #f4ecdc;
-      --ink:           #3a2b24;
+      /* Soft palette drawn from the photo: sage drapes, champagne gown, warm gold */
+      --sage-deep:     #4f6152;   /* deepest green for headings on light panels */
+      --sage:          #6e8470;   /* muted sage green */
+      --sage-soft:     #9fb3a0;   /* pale sage */
+      --gold:          #b8954e;   /* champagne gold */
+      --gold-light:    #d8b878;   /* light gold */
+      --gold-pale:     #f0e3c6;   /* palest gold for text on dark photo */
+      --cream:         #fbf7ef;   /* warm cream */
+      --cream-dim:     #f1ebdd;
+      --ink:           #4a443c;   /* soft warm charcoal body text */
+
+      /* Frosted glass panel surfaces sitting over the fixed photo */
+      --glass:         rgba(251, 247, 239, .82);
+      --glass-strong:  rgba(251, 247, 239, .92);
 
       --serif:  "Cormorant Garamond", Georgia, serif;
       --script: "Tangerine", cursive;
@@ -50,10 +55,31 @@
       font-family: var(--sans);
       font-weight: 300;
       color: var(--ink);
-      background: var(--cream);
       line-height: 1.7;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
+      /* The couple's photo is fixed behind the whole page; a soft cream
+         wash keeps the floating glass panels readable as you scroll.
+         Swap images/couple.jpeg to change the backdrop. */
+      background:
+        linear-gradient(rgba(251,247,239,.55), rgba(241,235,221,.6)),
+        url("images/couple.jpeg") center / cover no-repeat fixed,
+        var(--cream);
+    }
+    /* iOS doesn't support background-attachment:fixed well, so on touch
+       devices we pin a blurred copy behind everything instead. */
+    .bg-fixed {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background:
+        linear-gradient(rgba(251,247,239,.5), rgba(241,235,221,.58)),
+        url("images/couple.jpeg") center / cover no-repeat;
+      display: none;
+    }
+    @media (hover: none) and (pointer: coarse) {
+      body { background: var(--cream); }
+      .bg-fixed { display: block; }
     }
 
     h1, h2, h3 { font-family: var(--serif); font-weight: 500; line-height: 1.15; }
@@ -119,9 +145,11 @@
       text-align: center;
       color: var(--cream);
       padding: 60px 20px;
+      /* Hero shows the portrait prominently with only a gentle wash for
+         text legibility — focal point shifted up so faces sit high. */
       background:
-        radial-gradient(circle at 50% 20%, rgba(201,161,59,.18), transparent 55%),
-        linear-gradient(160deg, var(--maroon-deep), var(--maroon) 55%, var(--maroon-deep));
+        linear-gradient(to bottom, rgba(79,97,82,.28), rgba(79,97,82,.12) 35%, rgba(74,68,60,.55)),
+        url("images/couple.jpeg") center 18% / cover no-repeat;
       overflow: hidden;
     }
     /* Subtle decorative gold rings floating in the background */
@@ -129,7 +157,7 @@
     .hero::after {
       content: "";
       position: absolute;
-      border: 1px solid rgba(201,161,59,.22);
+      border: 1px solid rgba(216,184,120,.3);
       border-radius: 50%;
       pointer-events: none;
     }
@@ -139,32 +167,35 @@
     .hero__inner {
       position: relative;
       z-index: 2;
-      border: 1px solid rgba(201,161,59,.4);
+      border: 1px solid rgba(216,184,120,.55);
       padding: clamp(34px, 7vw, 64px) clamp(22px, 6vw, 70px);
       max-width: 760px;
+      /* Soft veil so text stays readable on top of the portrait */
+      background: rgba(79, 97, 82, .32);
+      backdrop-filter: blur(3px);
     }
     /* Tiny corner flourishes on the framed box */
     .hero__inner::before,
     .hero__inner::after {
       content: "❖";
       position: absolute;
-      color: var(--gold);
+      color: var(--gold-light);
       font-size: 1rem;
     }
-    .hero__inner::before { top: -10px; left: -10px; background: var(--maroon); padding: 0 6px; }
-    .hero__inner::after  { bottom: -10px; right: -10px; background: var(--maroon-deep); padding: 0 6px; }
+    .hero__inner::before { top: -10px; left: -10px; background: var(--sage-deep); padding: 0 6px; }
+    .hero__inner::after  { bottom: -10px; right: -10px; background: var(--sage-deep); padding: 0 6px; }
 
-    .hero .eyebrow { color: var(--gold-light); }
+    .hero .eyebrow { color: var(--gold-pale); }
 
     .hero__names {
       font-family: var(--script);
       font-size: clamp(4rem, 14vw, 8.5rem);
-      color: var(--gold-light);
+      color: var(--cream);
       line-height: .9;
       margin: 8px 0 4px;
-      text-shadow: 0 2px 20px rgba(0,0,0,.35);
+      text-shadow: 0 2px 24px rgba(50,60,52,.6);
     }
-    .hero__amp { display: block; font-size: .5em; color: var(--cream); opacity: .85; }
+    .hero__amp { display: block; font-size: .5em; color: var(--gold-light); opacity: .95; }
 
     .hero__tag {
       font-family: var(--serif);
@@ -192,8 +223,9 @@
     .countdown__num {
       font-family: var(--serif);
       font-size: clamp(1.8rem, 6vw, 2.8rem);
-      color: var(--gold-light);
+      color: var(--cream);
       line-height: 1;
+      text-shadow: 0 2px 14px rgba(50,60,52,.5);
     }
     .countdown__label {
       display: block;
@@ -210,12 +242,13 @@
       position: absolute;
       bottom: 26px; left: 50%;
       transform: translateX(-50%);
-      color: var(--gold-light);
+      color: var(--gold-pale);
       font-size: .7rem;
       letter-spacing: .3em;
       text-transform: uppercase;
       z-index: 2;
       animation: bob 2.4s var(--ease) infinite;
+      text-shadow: 0 2px 10px rgba(50,60,52,.5);
     }
     @keyframes bob { 0%,100%{ transform: translate(-50%,0);} 50%{ transform: translate(-50%,8px);} }
 
@@ -225,19 +258,20 @@
     .blessings {
       text-align: center;
       padding: clamp(70px, 12vw, 120px) 0;
-      background: var(--cream);
+      background: var(--glass);
+      backdrop-filter: blur(8px);
     }
     .blessings__verse {
       font-family: var(--serif);
       font-style: italic;
       font-size: clamp(1.25rem, 3.6vw, 1.7rem);
-      color: var(--maroon);
+      color: var(--sage-deep);
       max-width: 620px;
       margin: 14px auto 0;
     }
     .section-title {
       font-size: clamp(2rem, 6vw, 3rem);
-      color: var(--maroon-deep);
+      color: var(--sage-deep);
       margin-top: 8px;
     }
 
@@ -256,7 +290,7 @@
     .family__name {
       font-family: var(--serif);
       font-size: clamp(1.6rem, 5vw, 2.3rem);
-      color: var(--maroon);
+      color: var(--sage-deep);
       margin: 4px 0 10px;
     }
     .family__parents { font-size: .95rem; color: var(--ink); }
@@ -272,18 +306,52 @@
     }
 
     /* ============================================================
+       5b. PORTRAIT SECTION
+       ============================================================ */
+    .portrait {
+      padding: clamp(70px, 12vw, 120px) 0;
+      text-align: center;
+      background: transparent;
+    }
+    .portrait__frame {
+      position: relative;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 14px;
+      background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-light));
+      border-radius: 4px;
+      box-shadow: 0 28px 60px rgba(79,97,82,.4);
+    }
+    .portrait__frame img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 2px;
+    }
+    .portrait__caption {
+      font-family: var(--script);
+      font-size: clamp(2.4rem, 8vw, 3.6rem);
+      color: var(--cream);
+      margin-top: 26px;
+      line-height: 1;
+      text-shadow: 0 2px 16px rgba(74,68,60,.6);
+    }
+
+    /* ============================================================
        6. EVENTS
        ============================================================ */
     .events {
       padding: clamp(70px, 12vw, 120px) 0;
       text-align: center;
       color: var(--cream);
+      /* Translucent deep-sage panel so the photo glows through softly */
       background:
-        radial-gradient(circle at 80% 10%, rgba(201,161,59,.12), transparent 50%),
-        linear-gradient(180deg, var(--maroon-deep), var(--maroon));
+        radial-gradient(circle at 80% 10%, rgba(216,184,120,.14), transparent 50%),
+        linear-gradient(180deg, rgba(79,97,82,.92), rgba(110,132,112,.88));
+      backdrop-filter: blur(6px);
     }
     .events .eyebrow { color: var(--gold-light); }
-    .events .section-title { color: var(--gold-light); }
+    .events .section-title { color: var(--gold-pale); }
 
     .cards {
       display: grid;
@@ -292,36 +360,37 @@
       margin-top: 54px;
     }
     .card {
-      background: var(--cream);
+      background: var(--glass-strong);
       color: var(--ink);
       border-radius: 4px;
       padding: clamp(28px, 5vw, 46px) clamp(22px, 4vw, 38px);
       text-align: center;
       position: relative;
-      box-shadow: 0 24px 50px rgba(0,0,0,.32);
+      box-shadow: 0 24px 50px rgba(50,60,52,.4);
       border: 1px solid var(--gold);
+      backdrop-filter: blur(4px);
       transition: transform .5s var(--ease), box-shadow .5s var(--ease);
     }
-    .card:hover { transform: translateY(-8px); box-shadow: 0 34px 64px rgba(0,0,0,.42); }
+    .card:hover { transform: translateY(-8px); box-shadow: 0 34px 64px rgba(50,60,52,.5); }
     /* Inner gold hairline frame */
     .card::after {
       content: "";
       position: absolute; inset: 10px;
-      border: 1px solid rgba(201,161,59,.45);
+      border: 1px solid rgba(184,149,78,.45);
       border-radius: 2px;
       pointer-events: none;
     }
     .card__icon { font-size: 1.8rem; color: var(--gold); }
     .card__name {
       font-size: clamp(1.6rem, 5vw, 2.1rem);
-      color: var(--maroon-deep);
+      color: var(--sage-deep);
       margin: 8px 0 2px;
     }
     .card__when {
       font-family: var(--serif);
       font-style: italic;
       font-size: 1.15rem;
-      color: var(--maroon-soft);
+      color: var(--sage);
     }
     .card__meta {
       margin-top: 18px;
@@ -353,13 +422,13 @@
       font-size: .72rem;
       letter-spacing: .2em;
       text-transform: uppercase;
-      color: var(--maroon);
+      color: var(--sage-deep);
       text-decoration: none;
       border-bottom: 1px solid var(--gold);
       padding-bottom: 3px;
       transition: color .3s ease, border-color .3s ease;
     }
-    .card__map:hover { color: var(--gold); border-color: var(--maroon); }
+    .card__map:hover { color: var(--gold); border-color: var(--sage); }
 
     /* ============================================================
        7. FOOTER / RSVP
@@ -367,19 +436,20 @@
     .footer {
       text-align: center;
       padding: clamp(64px, 11vw, 110px) 20px;
-      background: var(--cream-dim);
+      background: var(--glass);
+      backdrop-filter: blur(8px);
     }
     .footer__script {
       font-family: var(--script);
       font-size: clamp(3rem, 11vw, 5.5rem);
-      color: var(--maroon);
+      color: var(--sage-deep);
       line-height: 1;
     }
     .footer__line {
       font-family: var(--serif);
       font-style: italic;
       font-size: clamp(1.05rem, 3.4vw, 1.4rem);
-      color: var(--maroon-soft);
+      color: var(--sage);
       margin-top: 6px;
     }
     .footer__hash {
@@ -407,6 +477,10 @@
 </head>
 
 <body>
+
+  <!-- Pinned blurred backdrop for touch devices (where CSS fixed
+       background-attachment is unreliable). Hidden on desktop. -->
+  <div class="bg-fixed" aria-hidden="true"></div>
 
   <!-- ============================================================
        HERO BANNER
@@ -475,6 +549,19 @@
   </section>
 
   <!-- ============================================================
+       PORTRAIT
+       ============================================================ -->
+  <section class="portrait">
+    <div class="wrap">
+      <figure class="portrait__frame reveal">
+        <img src="images/couple.jpeg"
+             alt="Rupanshu and Anu sharing a dance" loading="lazy" />
+      </figure>
+      <p class="portrait__caption reveal d1">A new beginning</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
        EVENT ITINERARY
        ============================================================ -->
   <section class="events">
@@ -488,10 +575,10 @@
         <article class="card reveal d1">
           <div class="card__icon">💍</div>
           <h3 class="card__name">The Wedding</h3>
-          <p class="card__when">Baraat &amp; Vows</p>
+          <p class="card__when">Ceremony &amp; Vows</p>
 
           <p class="card__meta">Date<strong>29 June 2026</strong></p>
-          <p class="card__meta">Time<strong>7:00 PM (Baraat)</strong></p>
+          <p class="card__meta">Time<strong>7:00 PM onwards</strong></p>
 
           <p class="card__venue">
             Maharaja Aggarsain Bhawan,<br />
