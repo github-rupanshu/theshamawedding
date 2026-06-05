@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rupanshu Weds Anu | Wedding Invitation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #c9a84c;
+            --gold-light: #e0c97f;
+            --gold-dark: #a07828;
+            --maroon: #5c1a2a;
+            --maroon-light: #7d2e40;
+            --cream: #fdf8f0;
+            --cream-dark: #f5ead5;
+            --text-dark: #2c1f14;
+            --text-medium: #4a3728;
+            --white: #fffdf8;
+            --rose: #d4856b;
+            --leaf-green: #5a7d5a;
+            --shadow-soft: 0 4px 30px rgba(0, 0, 0, 0.08);
+            --shadow-gold: 0 4px 25px rgba(201, 168, 76, 0.25);
+            --border-gold: 1px solid rgba(201, 168, 76, 0.4);
+            --radius-lg: 24px;
+            --radius-md: 16px;
+            --radius-sm: 10px;
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', 'Georgia', serif;
+            background: var(--cream);
+            color: var(--text-dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background-image:
+                radial-gradient(ellipse at 20% 10%, rgba(201, 168, 76, 0.04) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 30%, rgba(92, 26, 42, 0.03) 0%, transparent 60%),
+                radial-gradient(ellipse at 50% 70%, rgba(201, 168, 76, 0.05) 0%, transparent 60%);
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--cream-dark);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold-light);
+            border-radius: 10px;
+        }
+
+        /* ============ LOADING SCREEN ============ */
+        #loading-screen {
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+            background: var(--maroon);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+        #loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        #loading-screen .diya-container {
+            position: relative;
+            width: 80px;
+            height: 100px;
+        }
+        #loading-screen .flame {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 24px;
+            height: 40px;
+            background: radial-gradient(ellipse at center, #fff8c0 0%, #f9a825 30%, #e65100 70%, transparent 100%);
+            border-radius: 50% 50% 20% 20%;
+            animation: flicker 0.5s ease-in-out infinite alternate;
+            filter: blur(1px);
+        }
+        #loading-screen .flame::after {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 14px;
+            height: 20px;
+            background: #fffde0;
+            border-radius: 50%;
+            filter: blur(3px);
+            animation: flickerInner 0.4s ease-in-out infinite alternate;
+        }
+        #loading-screen .diya-base {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 30px;
+            background: var(--gold-dark);
+            border-radius: 50% 50% 10px 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        #loading-screen .loading-text {
+            margin-top: 30px;
+            color: var(--gold-light);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            letter-spacing: 4px;
+            animation: pulse-text 1.5s ease-in-out infinite;
+        }
+        @keyframes flicker {
+            0% {
+                transform: translateX(-50%) scaleY(1) scaleX(1);
+                opacity: 0.9;
+            }
+            50% {
+                transform: translateX(-50%) scaleY(1.25) scaleX(0.85);
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(-50%) scaleY(0.9) scaleX(1.1);
+                opacity: 0.85;
+            }
+        }
+        @keyframes flickerInner {
+            0% {
+                transform: translateX(-50%) scale(1);
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateX(-50%) scale(1.4);
+                opacity: 1;
+            }
+        }
+        @keyframes pulse-text {
+            0%,
+            100% {
+                opacity: 0.5;
+                letter-spacing: 4px;
+            }
+            50% {
+                opacity: 1;
+                letter-spacing: 7px;
+            }
+        }
+
+        /* ============ MAIN CONTAINER ============ */
+        .main-container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 15px;
+            position: relative;
+        }
+
+        /* ============ TOP ORNAMENTAL BORDER ============ */
+        .top-ornament {
+            text-align: center;
+            padding: 25px 0 5px;
+            font-size: 1.6rem;
+            letter-spacing: 6px;
+            color: var(--gold);
+            animation: fadeInDown 1s ease forwards;
+        }
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ============ CARD ============ */
+        .invitation-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-soft), 0 0 0 1px rgba(201, 168, 76, 0.15);
+            overflow: hidden;
+            position: relative;
+            animation: fadeInUp 1.2s ease forwards;
+            opacity: 0;
+            animation-delay: 0.2s;
+            animation-fill-mode: forwards;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Inner border decoration */
+        .invitation-card::before {
+            content: '';
+            position: absolute;
+            inset: 12px;
+            border: 1.5px solid rgba(201, 168, 76, 0.3);
+            border-radius: calc(var(--radius-lg) - 8px);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        /* ============ HERO SECTION ============ */
+        .hero-section {
+            background: linear-gradient(170deg,
+                    #fdf8f0 0%, #f9f0e0 25%, #fef9f2 50%, #fdf5ea 75%, #fdf8f0 100%);
+            padding: 50px 30px 40px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold-light), var(--gold), var(--gold-light), transparent);
+        }
+
+        /* Floral decorations */
+        .floral-corner {
+            position: absolute;
+            font-size: 3.5rem;
+            opacity: 0.5;
+            z-index: 0;
+            pointer-events: none;
+            animation: float 6s ease-in-out infinite;
+        }
+        .floral-tl {
+            top: 15px;
+            left: 20px;
+            animation-delay: 0s;
+        }
+        .floral-tr {
+            top: 15px;
+            right: 20px;
+            animation-delay: 1.5s;
+        }
+        .floral-bl {
+            bottom: 15px;
+            left: 20px;
+            animation-delay: 3s;
+        }
+        .floral-br {
+            bottom: 15px;
+            right: 20px;
+            animation-delay: 4.5s;
+        }
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            25% {
+                transform: translateY(-8px) rotate(2deg);
+            }
+            50% {
+                transform: translateY(0) rotate(0deg);
+            }
+            75% {
+                transform: translateY(6px) rotate(-2deg);
+            }
+        }
+
+        .mantra-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            letter-spacing: 5px;
+            color: var(--gold-dark);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+        .sanskrit-shloka {
+            font-family: 'Tangerine', 'Great Vibes', cursive;
+            font-size: 2.2rem;
+            color: var(--maroon);
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 1;
+            font-weight: 400;
+        }
+        .together-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.95rem;
+            letter-spacing: 6px;
+            color: var(--text-medium);
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Couple names */
+        .couple-names {
+            position: relative;
+            z-index: 1;
+            margin: 20px 0;
+        }
+        .groom-name,
+        .bride-name {
+            font-family: 'Great Vibes', 'Tangerine', cursive;
+            font-size: 3.8rem;
+            line-height: 1;
+            letter-spacing: 1px;
+        }
+        .groom-name {
+            color: var(--maroon);
+            margin-bottom: 2px;
+        }
+        .bride-name {
+            color: var(--maroon-light);
+        }
+        .and-symbol {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.5rem;
+            color: var(--gold);
+            display: block;
+            margin: 5px 0;
+            line-height: 1;
+        }
+        .heart-icon {
+            display: inline-block;
+            font-size: 1.6rem;
+            color: var(--rose);
+            animation: heartbeat 1.2s ease-in-out infinite;
+            margin: 0 8px;
+        }
+        @keyframes heartbeat {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+            15% {
+                transform: scale(1.25);
+            }
+            30% {
+                transform: scale(1);
+            }
+            45% {
+                transform: scale(1.2);
+            }
+            60% {
+                transform: scale(1);
+            }
+        }
+
+        /* Parents section */
+        .parents-section {
+            position: relative;
+            z-index: 1;
+            margin-top: 18px;
+            font-size: 0.95rem;
+            color: var(--text-medium);
+            letter-spacing: 1px;
+        }
+        .parents-section .label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--gold-dark);
+            margin-bottom: 2px;
+        }
+        .parents-section .parent-name {
+            font-weight: 500;
+            color: var(--text-dark);
+            font-size: 1rem;
+        }
+        .parents-grid {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+        .parent-block {
+            text-align: center;
+        }
+        .parent-divider {
+            width: 1px;
+            background: rgba(201, 168, 76, 0.4);
+            align-self: stretch;
+            min-height: 60px;
+        }
+        .late-shri {
+            font-style: italic;
+            color: var(--maroon-light);
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        /* ============ EVENT DETAILS SECTION ============ */
+        .events-section {
+            padding: 35px 30px 30px;
+            position: relative;
+            z-index: 1;
+            background: var(--white);
+        }
+        .section-title {
+            text-align: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            letter-spacing: 4px;
+            color: var(--maroon);
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        .section-title::after {
+            content: '◆';
+            display: block;
+            font-size: 0.5rem;
+            color: var(--gold);
+            margin-top: 8px;
+            letter-spacing: 8px;
+        }
+
+        .event-card {
+            background: linear-gradient(135deg, #fefcf8 0%, #fdf7ed 100%);
+            border: var(--border-gold);
+            border-radius: var(--radius-md);
+            padding: 25px 22px;
+            margin-bottom: 20px;
+            text-align: center;
+            position: relative;
+            transition: var(--transition);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.03);
+        }
+        .event-card:hover {
+            box-shadow: var(--shadow-gold);
+            transform: translateY(-3px);
+            border-color: var(--gold-light);
+        }
+        .event-icon {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .event-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.4rem;
+            color: var(--maroon);
+            line-height: 1.2;
+            letter-spacing: 1px;
+        }
+        .event-subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold-dark);
+            margin-bottom: 8px;
+        }
+        .event-date-time {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            font-weight: 500;
+            letter-spacing: 2px;
+            margin: 8px 0;
+        }
+        .event-date-time .highlight {
+            color: var(--maroon);
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+        .event-venue {
+            font-size: 0.95rem;
+            color: var(--text-medium);
+            letter-spacing: 1px;
+            line-height: 1.6;
+        }
+        .event-venue strong {
+            color: var(--text-dark);
+            font-size: 1rem;
+        }
+        .venue-address {
+            font-size: 0.85rem;
+            color: #6b5d4f;
+            margin-top: 3px;
+        }
+
+        .map-link {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 10px 22px;
+            background: transparent;
+            border: 1.5px solid var(--gold);
+            color: var(--gold-dark);
+            text-decoration: none;
+            border-radius: 50px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        .map-link:hover {
+            background: var(--gold);
+            color: #fff;
+            border-color: var(--gold);
+            box-shadow: var(--shadow-gold);
+        }
+
+        /* ============ COUNTDOWN ============ */
+        .countdown-section {
+            text-align: center;
+            padding: 20px 30px 30px;
+            position: relative;
+            z-index: 1;
+        }
+        .countdown-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.85rem;
+            letter-spacing: 4px;
+            color: var(--text-medium);
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+        .countdown-box {
+            background: var(--white);
+            border: var(--border-gold);
+            border-radius: var(--radius-sm);
+            padding: 14px 16px;
+            min-width: 65px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+        }
+        .countdown-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--maroon);
+            line-height: 1;
+        }
+        .countdown-label {
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold-dark);
+            margin-top: 4px;
+        }
+
+        /* ============ DIVIDER ============ */
+        .ornament-divider {
+            text-align: center;
+            padding: 0 30px;
+            position: relative;
+            z-index: 1;
+            color: var(--gold);
+            letter-spacing: 8px;
+            font-size: 0.7rem;
+        }
+
+        /* ============ FOOTER ============ */
+        .footer-section {
+            text-align: center;
+            padding: 25px 30px 35px;
+            position: relative;
+            z-index: 1;
+            font-family: 'Cormorant Garamond', serif;
+        }
+        .footer-quote {
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.6rem;
+            color: var(--maroon);
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+        .footer-note {
+            font-size: 0.85rem;
+            color: var(--text-medium);
+            letter-spacing: 2px;
+            line-height: 1.8;
+        }
+        .footer-note .names {
+            color: var(--maroon);
+            font-weight: 500;
+        }
+        .hashtag {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 8px 20px;
+            background: rgba(201, 168, 76, 0.1);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            color: var(--gold-dark);
+            border: 1px dashed rgba(201, 168, 76, 0.4);
+        }
+
+        /* ============ MUSIC TOGGLE ============ */
+        .music-toggle {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 999;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--white);
+            border: 2px solid var(--gold);
+            cursor: pointer;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition);
+            color: var(--gold-dark);
+        }
+        .music-toggle:hover {
+            background: var(--gold);
+            color: #fff;
+            box-shadow: var(--shadow-gold);
+        }
+        .music-toggle.playing {
+            animation: musicPulse 1.5s ease-in-out infinite;
+            background: var(--maroon);
+            color: #fff;
+            border-color: var(--maroon);
+        }
+        @keyframes musicPulse {
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(92, 26, 42, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 0 18px rgba(92, 26, 42, 0);
+            }
+        }
+
+        /* ============ PETAL FALL ============ */
+        .petal {
+            position: fixed;
+            pointer-events: none;
+            z-index: 998;
+            font-size: 1.5rem;
+            animation: petalFall linear forwards;
+            opacity: 0.8;
+        }
+        @keyframes petalFall {
+            0% {
+                transform: translateY(-60px) rotate(0deg) translateX(0);
+                opacity: 0.9;
+            }
+            25% {
+                transform: translateY(25vh) rotate(90deg) translateX(40px);
+                opacity: 0.7;
+            }
+            50% {
+                transform: translateY(50vh) rotate(180deg) translateX(-30px);
+                opacity: 0.5;
+            }
+            75% {
+                transform: translateY(75vh) rotate(270deg) translateX(50px);
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(105vh) rotate(360deg) translateX(-20px);
+                opacity: 0;
+            }
+        }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 600px) {
+            .hero-section {
+                padding: 35px 18px 30px;
+            }
+            .events-section {
+                padding: 25px 15px 20px;
+            }
+            .groom-name,
+            .bride-name {
+                font-size: 2.8rem;
+            }
+            .sanskrit-shloka {
+                font-size: 1.6rem;
+            }
+            .event-title {
+                font-size: 1.8rem;
+            }
+            .parents-grid {
+                gap: 25px;
+            }
+            .parent-divider {
+                min-height: 40px;
+            }
+            .countdown-box {
+                min-width: 50px;
+                padding: 10px 12px;
+            }
+            .countdown-number {
+                font-size: 1.5rem;
+            }
+            .floral-corner {
+                font-size: 2.2rem;
+            }
+            .invitation-card::before {
+                inset: 8px;
+                border-radius: calc(var(--radius-lg) - 4px);
+            }
+            .music-toggle {
+                bottom: 15px;
+                right: 15px;
+                width: 40px;
+                height: 40px;
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .groom-name,
+            .bride-name {
+                font-size: 2.2rem;
+            }
+            .sanskrit-shloka {
+                font-size: 1.3rem;
+            }
+            .event-title {
+                font-size: 1.5rem;
+            }
+            .countdown-timer {
+                gap: 8px;
+            }
+            .countdown-box {
+                min-width: 42px;
+                padding: 8px 10px;
+            }
+            .countdown-number {
+                font-size: 1.3rem;
+            }
+            .parents-grid {
+                gap: 15px;
+                flex-direction: column;
+                align-items: center;
+            }
+            .parent-divider {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="diya-container">
+            <div class="flame"></div>
+            <div class="diya-base"></div>
+        </div>
+        <div class="loading-text">Welcoming You</div>
+    </div>
+
+    <!-- Music Toggle -->
+    <button class="music-toggle" id="musicToggle" title="Play Music" aria-label="Toggle music">🎵</button>
+
+    <!-- Hidden audio element -->
+    <audio id="bgMusic" loop preload="auto">
+        <source src="data:audio/mpeg;base64,SUQzBAAAAAAAI1RTU0UAAAAPAAADTGF2ZjU4Ljc2LjEwMAAAAAAAAAAAAAAA//tQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAWGluZwAAAA8AAAACAAADcADr6+vr6+vr6+vr6+vr6+vr6+vr6+vr6+vr6+vr6+vr6+vr6+vr6+vr6+vr6+vr6+vr6+//////////////////////////////////////////////////////////////////8AAAAATGF2YzU4LjEzAAAAAAAAAAAAAAAAJAAAAAAAAAAAAwNwYoRQAAAAAAAAAAAAAAAAAAAAAP/7kGQAAAIgAygBAQAAAAEAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA//sQZAAD8AAAaQAAAAgAAA0gAAABAAABpAAAACAAADSAAAAETEFNRTMuMTAwVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVU=" type="audio/mpeg">
+    </audio>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Top Ornament -->
+        <div class="top-ornament">✦ ❖ ✦</div>
+
+        <!-- Invitation Card -->
+        <div class="invitation-card">
+            <!-- Floral decorations -->
+            <span class="floral-corner floral-tl">🌺</span>
+            <span class="floral-corner floral-tr">🌿</span>
+            <span class="floral-corner floral-bl">🌸</span>
+            <span class="floral-corner floral-br">🌺</span>
+
+            <!-- Hero Section -->
+            <div class="hero-section">
+                <p class="mantra-text">॥ ॐ गणेशाय नमः ॥</p>
+                <p class="sanskrit-shloka">
+                    धन्यो विवाहः सुखदः प्रमोदः<br>
+                    संसारयात्रा सहधर्मचारिणी
+                </p>
+                <p class="together-text">Together with their families</p>
+
+                <div class="couple-names">
+                    <span class="groom-name">Rupanshu Sharma</span>
+                    <span class="and-symbol">
+                        <span class="heart-icon">♥</span> weds <span class="heart-icon">♥</span>
+                    </span>
+                    <span class="bride-name">Anu Sharma</span>
+                </div>
+
+                <div class="parents-section">
+                    <p class="label">Groom's Parents</p>
+                    <div class="parents-grid">
+                        <div class="parent-block">
+                            <p class="label">Mother</p>
+                            <p class="parent-name">Laxmi Devi</p>
+                        </div>
+                        <div class="parent-divider"></div>
+                        <div class="parent-block">
+                            <p class="label">Father</p>
+                            <p class="parent-name late-shri">Lt. Ram Kumar Sharma</p>
+                        </div>
+                    </div>
+                    <p style="margin-top: 15px;" class="label">Bride's Parents</p>
+                    <div class="parents-grid">
+                        <div class="parent-block">
+                            <p class="label">Mother</p>
+                            <p class="parent-name">Sanju Sharma</p>
+                        </div>
+                        <div class="parent-divider"></div>
+                        <div class="parent-block">
+                            <p class="label">Father</p>
+                            <p class="parent-name">Devender Kumar</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Events Section -->
+            <div class="events-section">
+                <h2 class="section-title">The Celebrations</h2>
+
+                <!-- Wedding Event -->
+                <div class="event-card">
+                    <span class="event-icon">💍</span>
+                    <p class="event-subtitle">You're Invited to the</p>
+                    <h3 class="event-title">Wedding Ceremony</h3>
+                    <p class="event-date-time">
+                        📅 <span class="highlight">29th June 2026</span> &nbsp;|&nbsp; 🕖 <span class="highlight">7:00 PM</span>
+                    </p>
+                    <p class="event-subtitle" style="margin-top:6px;">Baarat Swagat</p>
+                    <div class="event-venue">
+                        <strong>🏛 Maharaja Aggarsain Bhawan</strong><br>
+                        <span class="venue-address">Near Old Govt. College Ground,<br>Hisar, Haryana</span>
+                    </div>
+                    <a href="https://maps.google.com/?q=Maharaja+Aggarsain+Bhawan+Near+Old+Govt+College+Ground+Hisar+Haryana"
+                    target="_blank" rel="noopener" class="map-link">📍 View on Map</a>
+                </div>
+
+                <!-- Reception Event -->
+                <div class="event-card">
+                    <span class="event-icon">🥂</span>
+                    <p class="event-subtitle">Join us for the</p>
+                    <h3 class="event-title">Grand Reception</h3>
+                    <p class="event-date-time">
+                        📅 <span class="highlight">30th June 2026</span> &nbsp;|&nbsp; 🕖 <span class="highlight">7:00 PM</span> onwards
+                    </p>
+                    <div class="event-venue">
+                        <strong>🏛 Hall No. 2, Mapple Gold Banquet</strong><br>
+                        <span class="venue-address">Radisson Blu Hotel,<br>Paschim Vihar, New Delhi</span>
+                    </div>
+                    <a href="https://maps.google.com/?q=Radisson+Blu+Hotel+Paschim+Vihar+New+Delhi"
+                    target="_blank" rel="noopener" class="map-link">📍 View on Map</a>
+                </div>
+            </div>
+
+            <!-- Countdown -->
+            <div class="countdown-section">
+                <p class="countdown-title">Counting Down to the Big Day</p>
+                <div class="countdown-timer" id="countdown">
+                    <div class="countdown-box">
+                        <span class="countdown-number" id="days">00</span>
+                        <span class="countdown-label">Days</span>
+                    </div>
+                    <div class="countdown-box">
+                        <span class="countdown-number" id="hours">00</span>
+                        <span class="countdown-label">Hours</span>
+                    </div>
+                    <div class="countdown-box">
+                        <span class="countdown-number" id="minutes">00</span>
+                        <span class="countdown-label">Minutes</span>
+                    </div>
+                    <div class="countdown-box">
+                        <span class="countdown-number" id="seconds">00</span>
+                        <span class="countdown-label">Seconds</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Divider -->
+            <div class="ornament-divider">— ✦ ❖ ✦ —</div>
+
+            <!-- Footer -->
+            <div class="footer-section">
+                <p class="footer-quote">"Two hearts, one journey — forever begins here."</p>
+                <p class="footer-note">
+                    With the blessings of our elders,<br>
+                    <span class="names">Rupanshu & Anu</span><br>
+                    request the honour of your presence<br>
+                    to celebrate this joyous union.
+                </p>
+                <p style="margin-top:12px; font-size:0.85rem; color:var(--text-medium); letter-spacing:1px;">
+                    🙏 <em>Awaiting your gracious presence</em> 🙏
+                </p>
+                <span class="hashtag">#RupanshuWedsAnu</span>
+            </div>
+        </div>
+
+        <!-- Bottom ornament -->
+        <div class="top-ornament" style="padding-top:10px;">✦ ❖ ✦</div>
+    </div>
+
+    <script>
+        (function() {
+            // ============ LOADING SCREEN ============
+            const loadingScreen = document.getElementById('loading-screen');
+            window.addEventListener('load', () => {
+                setTimeout(() => {
+                    loadingScreen.classList.add('hidden');
+                }, 1800);
+            });
+            // Fallback: hide loading screen after 3 seconds even if load event hasn't fired
+            setTimeout(() => {
+                if (!loadingScreen.classList.contains('hidden')) {
+                    loadingScreen.classList.add('hidden');
+                }
+            }, 3000);
+
+            // ============ MUSIC TOGGLE ============
+            const musicToggle = document.getElementById('musicToggle');
+            const bgMusic = document.getElementById('bgMusic');
+            let isPlaying = false;
+
+            // Set initial volume low
+            bgMusic.volume = 0.35;
+
+            musicToggle.addEventListener('click', () => {
+                if (isPlaying) {
+                    bgMusic.pause();
+                    musicToggle.classList.remove('playing');
+                    musicToggle.textContent = '🎵';
+                    musicToggle.setAttribute('aria-label', 'Play Music');
+                } else {
+                    // Use a silent audio approach - try to play
+                    const playPromise = bgMusic.play();
+                    if (playPromise !== undefined) {
+                        playPromise.then(() => {
+                            musicToggle.classList.add('playing');
+                            musicToggle.textContent = '🎶';
+                            musicToggle.setAttribute('aria-label', 'Pause Music');
+                            isPlaying = true;
+                        }).catch(() => {
+                            // Autoplay blocked, still toggle UI
+                            musicToggle.classList.add('playing');
+                            musicToggle.textContent = '🎶';
+                            musicToggle.setAttribute('aria-label', 'Pause Music');
+                            isPlaying = true;
+                            // Try to play on next user interaction
+                            document.addEventListener('click', function playOnClick() {
+                                bgMusic.play().then(() => {
+                                    document.removeEventListener('click',
+                                        playOnClick);
+                                }).catch(() => {});
+                            }, { once: true });
+                        });
+                    }
+                    isPlaying = true;
+                }
+            });
+
+            // Try autoplay on first user interaction
+            let autoplayAttempted = false;
+            document.addEventListener('click', function tryAutoplay() {
+                if (!autoplayAttempted && !isPlaying) {
+                    autoplayAttempted = true;
+                    bgMusic.play().then(() => {
+                        musicToggle.classList.add('playing');
+                        musicToggle.textContent = '🎶';
+                        isPlaying = true;
+                    }).catch(() => {});
+                }
+            }, { once: true });
+
+            // ============ COUNTDOWN TIMER ============
+            const weddingDate = new Date('2026-06-29T19:00:00+05:30'); // IST
+
+            function updateCountdown() {
+                const now = new Date();
+                const diff = weddingDate - now;
+
+                if (diff <= 0) {
+                    document.getElementById('days').textContent = '00';
+                    document.getElementById('hours').textContent = '00';
+                    document.getElementById('minutes').textContent = '00';
+                    document.getElementById('seconds').textContent = '00';
+                    // Change countdown title if the day has arrived
+                    const countdownTitle = document.querySelector('.countdown-title');
+                    if (countdownTitle) {
+                        countdownTitle.textContent = '🎉 It\'s Wedding Day! 🎉';
+                    }
+                    return;
+                }
+
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+                document.getElementById('days').textContent = String(days).padStart(2, '0');
+                document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+                document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+                document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+            }
+
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+
+            // ============ PETAL FALL ANIMATION ============
+            const petalEmojis = ['🌸', '🌺', '💮', '🌷', '🪷', '🌼', '✿', '🌹'];
+            let petalInterval;
+
+            function createPetal() {
+                const petal = document.createElement('span');
+                petal.classList.add('petal');
+                petal.textContent = petalEmojis[Math.floor(Math.random() * petalEmojis.length)];
+                petal.style.left = Math.random() * 100 + '%';
+                petal.style.fontSize = (Math.random() * 1.5 + 0.8) + 'rem';
+                petal.style.animationDuration = (Math.random() * 6 + 7) + 's';
+                petal.style.animationDelay = '0s';
+                document.body.appendChild(petal);
+
+                // Remove after animation
+                const duration = parseFloat(petal.style.animationDuration) * 1000;
+                setTimeout(() => {
+                    if (petal.parentNode) {
+                        petal.remove();
+                    }
+                }, duration + 500);
+            }
+
+            // Create petals periodically
+            function startPetals() {
+                petalInterval = setInterval(() => {
+                    // Only create petals if page is visible
+                    if (document.hidden) return;
+                    createPetal();
+                    // Occasionally create a burst
+                    if (Math.random() < 0.2) {
+                        setTimeout(createPetal, 300);
+                        setTimeout(createPetal, 600);
+                    }
+                }, 2500);
+            }
+
+            function stopPetals() {
+                clearInterval(petalInterval);
+            }
+
+            // Start petals
+            startPetals();
+
+            // Pause petals when page is hidden
+            document.addEventListener('visibilitychange', () => {
+                if (document.hidden) {
+                    stopPetals();
+                } else {
+                    startPetals();
+                }
+            });
+
+            // Initial burst of petals
+            setTimeout(() => {
+                for (let i = 0; i < 6; i++) {
+                    setTimeout(createPetal, i * 400);
+                }
+            }, 2200);
+
+            // ============ SMOOTH SCROLL FOR MAP LINKS ============
+            document.querySelectorAll('.map-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // Allow default behavior (open in new tab)
+                    // Add a subtle ripple effect
+                    const ripple = document.createElement('span');
+                    ripple.style.cssText = `
+                                position: absolute;
+                                border-radius: 50%;
+                                background: rgba(201,168,76,0.5);
+                                width: 20px;
+                                height: 20px;
+                                left: 50%;
+                                top: 50%;
+                                transform: translate(-50%, -50%) scale(0);
+                                animation: rippleEffect 0.8s ease-out forwards;
+                                pointer-events: none;
+                            `;
+                    this.style.position = 'relative';
+                    this.style.overflow = 'hidden';
+                    this.appendChild(ripple);
+                    setTimeout(() => ripple.remove(), 800);
+                });
+            });
+
+            // Add ripple keyframes dynamically
+            const rippleStyle = document.createElement('style');
+            rippleStyle.textContent = `
+                        @keyframes rippleEffect {
+                            to { transform: translate(-50%, -50%) scale(15); opacity: 0; }
+                        }
+                    `;
+            document.head.appendChild(rippleStyle);
+
+            console.log('💍✨ Rupanshu Weds Anu — Wedding Invitation ✨💍');
+            console.log('📅 Wedding: 29th June 2026 | Hisar, Haryana');
+            console.log('🥂 Reception: 30th June 2026 | Radisson Blu, Paschim Vihar, New Delhi');
+            console.log('💖 Thank you for being part of our celebration! 💖');
+        })();
+    </script>
+</body>
+</html>
